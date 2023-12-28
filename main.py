@@ -12,6 +12,7 @@ while True:
             print("Вход успешно выполнен")
             time.sleep(2)
             print("1 - снять\n2 - внести\n3 - изменить пароль")
+            n = input("Enter")
 
         else:
             print('Пароль введен неправильно')
