@@ -39,3 +39,25 @@ class Bank:
         if self.cursor.fetchall():
             return True
         return False
+
+    def balance(self, login, cash):
+        self.cursor.execute('select * from users where login=? and cash>=?', (login, cash))
+        if self.cursor.fetchall():
+            return True
+        return False
+    def update_balance(self, login, cash):
+        self.cursor.execute('update users set cash=cash-? where login=?', (cash, login))
+        self.con.commit()
+
+    def get_balance(self, login):
+        self.cursor.execute('select cash from users where login=?', (login,))
+        return self.cursor.fetchone()[0]
+
+    def update_balance_2(self, login, cash):
+        self.cursor.execute('update users set cash=cash+? where login=?', (cash, login))
+        self.con.commit()
+
+    def update_password(self, login, password):
+        print(login, password)
+        self.cursor.execute('update users set password=? where login=?', (password, login, ))
+        self.con.commit()
